@@ -6,19 +6,12 @@ chai.use(chaiHttp);
 
 describe('Integration Test: Nginx Web Server', () => {
   it('should return status 200 and the greeting from the HTML file', (done) => {
-    chai.request('http://localhost:8080')  // Corrected URL format
+    chai.request('http://localhost:8080')  // Assuming Docker container is mapped to port 8080
       .get('/')
       .end((err, res) => {
-        if (err) {
-          console.error("Request Error:", err.message);
-          return done(err);  // Ensures Mocha correctly handles errors
-        }
-
-        console.log("Response Status:", res.status);
-        console.log("Response Body:", res.text);
-
-        expect(res).to.have.status(200);  // Check HTTP status
-        expect(res.text).to.include('Hello from Docker!');  // Validate response content
+        console.log(res);  // Debug the response object
+        expect(res).to.have.status(200);  // Ensure the server returns 200 status code
+        expect(res.text).to.include('Hello from Docker!');  // Ensure the HTML content is correct
         done();
       });
   });
