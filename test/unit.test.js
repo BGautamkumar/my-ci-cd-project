@@ -1,13 +1,9 @@
-const assert = require('chai').assert;
-
-// Example JavaScript function in the static HTML file
-function greet() {
-  return 'Hello from Docker!';
-}
+const { assert } = require('chai');
+const { greet } = require('../path/to/your/javascript/file'); // Adjust path
 
 describe('Unit Tests', () => {
   it('should return the correct greeting message', () => {
     const message = greet();
-    assert.equal(message, 'Hello from Docker!');
+    assert.strictEqual(message, 'Hello from Docker!');
   });
 });
